@@ -1,7 +1,7 @@
 // Home
 import React, {} from "react";
 
-function Home(){
+function Home( {boards} ){
     return (
         <div className="App">
             <div id="layoutSidenav">
@@ -137,6 +137,19 @@ function Home(){
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div>
+                                <ul>
+                                    {boards && boards.length > 0 ? (
+                                        boards.map((board) => (
+                                            <li key={board.boardId}>
+                                                {board.title} - {board.content}
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <li>게시물이 없습니다.</li>
+                                    )}
+                                </ul>
                             </div>
                             <div className="row">
                                 <div className="col-xl-6">

@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
+import Header from "./component/Header";
+import Home from "./component/Home";
+import Footer from "./component/Footer";
 
 function App() {
-    const [message, setMessage] = useState("DB 상태 확인중...");
+    const [boards, setBoards] = useState([]);
 
     useEffect(() => {
-        fetch("/api/db-check")
-            .then((res) => res.text())
-            .then((data) => setMessage(data))
-            .catch((err) => setMessage("에러: " + err));
+        fetch("http://localhost:8080/api/boards")
+            .then((res) => res.json())
+            .then((data) => setBoards(data))
+            .catch((err) => console.error(err));
     }, []);
 
-    return <h1>{message}</h1>;
+    return (
+        <div className="App">
+            <Header/>
+            <Home boards ={boards} />
+            <Footer/>
+        </div>
+    )
 }
+
+
 
 export default App;
