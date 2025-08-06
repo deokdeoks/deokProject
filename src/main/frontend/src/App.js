@@ -1,27 +1,16 @@
-import './App.css';
-import React, {useEffect, useState} from "react";
-import axios from "axios";
-import Footer from "./component/Footer";
-import Header from "./component/Header";
-import Home from "./component/Home";
+import { useEffect, useState } from "react";
 
-function App(){
-    return (
-/*  const [data, setData] = useState('');
+function App() {
+    const [message, setMessage] = useState("DB 상태 확인중...");
 
-  useEffect(()=>{
-    axios.get("/test")
-        .then(res => setData(res.data))
-        .catch(err => console.log("error : " + err))
-  })
+    useEffect(() => {
+        fetch("/api/db-check")
+            .then((res) => res.text())
+            .then((data) => setMessage(data))
+            .catch((err) => setMessage("에러: " + err));
+    }, []);
 
-  return data;*/
-  <div className="App">
-    <Header/>
-    <Home/>
-    <Footer/>
-  </div>
-  )
+    return <h1>{message}</h1>;
 }
 
 export default App;
