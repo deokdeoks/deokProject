@@ -159,7 +159,7 @@ function Home( {boards, refreshBoards} ){
                                     </div>
                                 </div>
                             </div>
-                            <CreateDashBoard refreshBoards={refreshBoards} />
+                            <button >등록</button>
                             <div style={{ padding: '20px' }}>
                                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                                     <thead>
@@ -188,6 +188,7 @@ function Home( {boards, refreshBoards} ){
                                     </tbody>
                                 </table>
                             </div>
+                            <CreateDashBoard refreshBoards={refreshBoards} />
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div className="card mb-4">
