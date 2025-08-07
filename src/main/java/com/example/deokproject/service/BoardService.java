@@ -26,4 +26,20 @@ public class BoardService {
             return board;
         });
     }
+
+    public int insert(BoardVo board) {
+        String sql = "INSERT INTO BOARD (BOARD_ID, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, ?, ?)";
+        return jdbcTemplate.update(sql, board.getTitle(), board.getContent());
+    }
+
+    public int update(BoardVo board) {
+        String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE BOARD_ID = ?";
+        return jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getBoardId());
+    }
+
+    public int delete(Long boardId) {
+        String sql = "DELETE FROM BOARD WHERE BOARD_ID = ?";
+        return jdbcTemplate.update(sql, boardId);
+    }
+
 }

@@ -1,7 +1,28 @@
 // Home
 import React, {} from "react";
+import CreateDashBoard from "./CreateDashBoard";
 
-function Home( {boards} ){
+function Home( {boards, refreshBoards} ){
+    const thStyle = {
+        border: '1px solid #ddd',
+        padding: '12px',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    };
+
+    const tdStyle = {
+        border: '1px solid #ddd',
+        padding: '10px',
+        textAlign: 'left',
+    };
+
+    const rowEvenStyle = {
+        backgroundColor: '#ffffff',
+    };
+
+    const rowOddStyle = {
+        backgroundColor: '#f9f9f9',
+    };
     return (
         <div className="App">
             <div id="layoutSidenav">
@@ -138,18 +159,34 @@ function Home( {boards} ){
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <ul>
+                            <CreateDashBoard refreshBoards={refreshBoards} />
+                            <div style={{ padding: '20px' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                                    <thead>
+                                    <tr style={{ backgroundColor: '#f2f2f2' }}>
+                                        <th style={thStyle}>번호</th>
+                                        <th style={thStyle}>제목</th>
+                                        <th style={thStyle}>내용</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
                                     {boards && boards.length > 0 ? (
-                                        boards.map((board) => (
-                                            <li key={board.boardId}>
-                                                {board.title} - {board.content}
-                                            </li>
+                                        boards.map((board, index) => (
+                                            <tr key={board.boardId} style={index % 2 === 0 ? rowEvenStyle : rowOddStyle}>
+                                                <td style={tdStyle}>{index + 1}</td>
+                                                <td style={tdStyle}>{board.title}</td>
+                                                <td style={tdStyle}>{board.content}</td>
+                                            </tr>
                                         ))
                                     ) : (
-                                        <li>게시물이 없습니다.</li>
+                                        <tr>
+                                            <td colSpan="3" style={{ textAlign: 'center', padding: '20px' }}>
+                                                게시물이 없습니다.
+                                            </td>
+                                        </tr>
                                     )}
-                                </ul>
+                                    </tbody>
+                                </table>
                             </div>
                             <div className="row">
                                 <div className="col-xl-6">
