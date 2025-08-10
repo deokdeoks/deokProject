@@ -11,3 +11,96 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.button {
+  width: 100%;
+  padding: 14px;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.th {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+tr.rowEvenStyle {
+  background-color: #ffffff;
+}
+
+tr.rowOddStyle{
+  background-color: #f9f9f9;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #4f9eff, #005be0);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}

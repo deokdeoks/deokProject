@@ -1,57 +1,6 @@
 import { useState } from "react";
 
 function CreateDashBoard({ refreshBoards }) {
-    const styles = {
-        container: {
-            maxWidth: '600px',
-            margin: '40px auto',
-            padding: '30px 40px',
-            backgroundColor: '#f9f9f9',
-            borderRadius: '10px',
-            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-        },
-        title: {
-            marginBottom: '25px',
-            color: '#333',
-            fontWeight: '700',
-            fontSize: '28px',
-            textAlign: 'center',
-        },
-        input: {
-            width: '100%',
-            padding: '12px 15px',
-            marginBottom: '20px',
-            border: '1.5px solid #ddd',
-            borderRadius: '8px',
-            fontSize: '16px',
-            outline: 'none',
-            transition: 'border-color 0.3s ease',
-        },
-        textarea: {
-            width: '100%',
-            padding: '12px 15px',
-            marginBottom: '20px',
-            border: '1.5px solid #ddd',
-            borderRadius: '8px',
-            fontSize: '16px',
-            outline: 'none',
-            resize: 'vertical',
-            transition: 'border-color 0.3s ease',
-        },
-        button: {
-            width: '100%',
-            padding: '14px',
-            backgroundColor: '#4a90e2',
-            border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            fontSize: '18px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'background-color 0.3s ease',
-        },
-    };
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -71,14 +20,15 @@ function CreateDashBoard({ refreshBoards }) {
                 setTitle("");
                 setContent("");
                 refreshBoards(); // 부모에서 목록 새로고침 요청
+                window.location.reload();
             })
             .catch((err) => console.error(err));
     };
 
     return (
 
-        <div style={styles.container}>
-            <h2 style={styles.title}>새 게시글 작성</h2>
+        <div className="container">
+            <h2 className="title">새 게시글 작성</h2>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -86,7 +36,7 @@ function CreateDashBoard({ refreshBoards }) {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="제목"
                     required
-                    style={styles.input}
+                    className="input"
                 />
                 <textarea
                     value={content}
@@ -94,9 +44,9 @@ function CreateDashBoard({ refreshBoards }) {
                     placeholder="내용"
                     required
                     rows={6}
-                    style={styles.textarea}
+                    className="textarea"
                 />
-                <button type="submit" style={styles.button}>
+                <button type="submit" className="button">
                     등록
                 </button>
             </form>

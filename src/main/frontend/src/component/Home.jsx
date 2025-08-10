@@ -1,28 +1,18 @@
 // Home
-import React, {} from "react";
+import React, {useRef} from "react";
 import CreateDashBoard from "./CreateDashBoard";
 
 function Home( {boards, refreshBoards} ){
-    const thStyle = {
-        border: '1px solid #ddd',
-        padding: '12px',
-        textAlign: 'center',
-        fontWeight: 'bold',
+    const dialogRef = useRef(null);
+
+    const openModal = () => {
+        dialogRef.current.showModal(); // 모달 열기
     };
 
-    const tdStyle = {
-        border: '1px solid #ddd',
-        padding: '10px',
-        textAlign: 'left',
+    const closeModal = () => {
+        dialogRef.current.close(); // 모달 닫기
     };
 
-    const rowEvenStyle = {
-        backgroundColor: '#ffffff',
-    };
-
-    const rowOddStyle = {
-        backgroundColor: '#f9f9f9',
-    };
     return (
         <div className="App">
             <div id="layoutSidenav">
@@ -159,23 +149,28 @@ function Home( {boards, refreshBoards} ){
                                     </div>
                                 </div>
                             </div>
-                            <button >등록</button>
+                            <button className="submit-btn" onClick={openModal}>등록</button>
+                            <dialog id="modal" ref={dialogRef}>
+                                <CreateDashBoard refreshBoards={refreshBoards}/>
+                                <button className="submit-btn" onClick={closeModal}>닫기</button>
+                            </dialog>
                             <div style={{ padding: '20px' }}>
                                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                                     <thead>
                                     <tr style={{ backgroundColor: '#f2f2f2' }}>
-                                        <th style={thStyle}>번호</th>
-                                        <th style={thStyle}>제목</th>
-                                        <th style={thStyle}>내용</th>
+                                        <th className="th">번호</th>
+                                        <th className="th">제목</th>
+                                        <th className="th">내용</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {boards && boards.length > 0 ? (
-                                        boards.map((board, index) => (
-                                            <tr key={board.boardId} style={index % 2 === 0 ? rowEvenStyle : rowOddStyle}>
-                                                <td style={tdStyle}>{index + 1}</td>
-                                                <td style={tdStyle}>{board.title}</td>
-                                                <td style={tdStyle}>{board.content}</td>
+                                      boards.map((board, index) => (
+                                            <tr key={board.boardId}
+                                                className={index % 2 === 0 ? 'rowEvenStyle' : 'rowOddStyle'}>
+                                                <td className="td">{index + 1}</td>
+                                                  <td className="td">{board.title}</td>
+                                                <td className="td">{board.content}</td>
                                             </tr>
                                         ))
                                     ) : (
@@ -188,7 +183,6 @@ function Home( {boards, refreshBoards} ){
                                     </tbody>
                                 </table>
                             </div>
-                            <CreateDashBoard refreshBoards={refreshBoards} />
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div className="card mb-4">
